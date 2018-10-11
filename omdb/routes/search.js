@@ -1,13 +1,18 @@
-const fs = require('fs');
-const path = require('path');
+const url = require('url');
 
-function notFound(req,res) {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
+const omdb = require('../lib/omdb');
 
-    const stream = fs.createReadStream(path.resolve('public', 'movie.html')); // public/movie.html
+function search(req, res) {
+    const parsedUrl = url.parse(req.url, true);
+    const title = parsedUrl.query.title;
 
-    stream.pipe(res);
+    omdb.get(title, (error, movie) => {
+        if (error) {
+            return res.render('error.html', { error: error.message });
+        }
+
+        res.render('movie.html', movie);
+    });
 }
 
-module.exports = notFound;
+module.exports = search;
