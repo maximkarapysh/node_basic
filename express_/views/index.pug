@@ -1,0 +1,12 @@
+extends layout
+
+block main
+    .container
+        .row
+            .col-5
+                if todos
+                    ul#todo-list.list-group
+                        for todo in todos
+                            li.list-group-item.list-group-item-action(class= {'list-group-item-primary': todo.completed})= todo.title
+                else 
+                    h4 Not found 'todos'

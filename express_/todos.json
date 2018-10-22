@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "title": "Изучить node.js",
+        "completed": true
+    },
+    {
+        "id": 2,
+        "title": "Изучить express",
+        "completed": false
+    },
+    {
+        "id": 3,
+        "title": "Изучить mongoDb",
+        "completed": false
+    }
+]
